@@ -1,0 +1,102 @@
+:root {
+  --tekst: #242424;
+  --tekst2: #616161;
+  --tekst3: #8a8a8a;
+  --flade: #ffffff;
+  --flade2: #f5f5f5;
+  --streg: #e0e0e0;
+  --optaget: #dcdcdc;
+  --optaget-kant: #9e9e9e;
+  --forel: #fdf1dc;
+  --forel-kant: #c98a1b;
+  --ledig: #dff0cc;
+  --ledig-kant: #6a9e2a;
+  --ledig-tekst: #2c4f0b;
+  --valgt: #4f8a14;
+  --valgt-tekst: #ffffff;
+  --accent: #0f6cbd;
+  --idag: #0f6cbd;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tekst: #f0f0f0; --tekst2: #c0c0c0; --tekst3: #8f8f8f;
+    --flade: #1f1f1f; --flade2: #292929; --streg: #3a3a3a;
+    --optaget: #3d3d3d; --optaget-kant: #8a8a8a;
+    --forel: #4a3712; --forel-kant: #e0a53c;
+    --ledig: #29420f; --ledig-kant: #8cc152; --ledig-tekst: #e6f4d4;
+    --valgt: #8cc152; --valgt-tekst: #13240a;
+    --accent: #479ef5; --idag: #479ef5;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { background: var(--flade); color: var(--tekst); font-size: 14px; display: flex; flex-direction: column; }
+button, select { font: inherit; color: inherit; }
+button { background: var(--flade); border: 1px solid var(--streg); border-radius: 6px; padding: 5px 12px; cursor: pointer; }
+button:hover { background: var(--flade2); }
+select { background: var(--flade); border: 1px solid var(--streg); border-radius: 6px; padding: 4px 6px; }
+
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 12px 16px; border-bottom: 1px solid var(--streg); }
+.nav { display: flex; align-items: center; gap: 6px; }
+.nav h1 { font-size: 17px; font-weight: 600; margin: 0 0 0 10px; }
+.pil { font-size: 20px; line-height: 1; padding: 2px 11px 5px; }
+.lille { font-size: 13px; }
+.valg { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--tekst2); }
+.valg label { display: flex; align-items: center; gap: 6px; }
+.skift { display: inline-flex; border: 1px solid var(--streg); border-radius: 7px; padding: 2px; gap: 2px; }
+.skift button { border: 0; padding: 3px 10px; font-size: 13px; color: var(--tekst2); }
+.skift button.on { background: var(--flade2); color: var(--tekst); font-weight: 600; }
+
+.besked { margin: 10px 16px 0; padding: 8px 12px; border-radius: 6px; background: var(--forel); color: var(--tekst); font-size: 13px; }
+
+.ramme { flex: 1; display: grid; grid-template-columns: minmax(0, 1fr) 280px; min-height: 0; }
+.kal { overflow: auto; padding: 10px 12px 16px 6px; }
+.liste { border-left: 1px solid var(--streg); padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; overflow: auto; }
+.liste h2 { font-size: 14px; font-weight: 600; margin: 0; }
+.tom { color: var(--tekst3); font-size: 13px; margin: 0; }
+#valgte { list-style: disc; margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.55; }
+#valgte li { margin: 0 0 6px; }
+#valgte .dag { cursor: pointer; }
+#valgte .dag:hover { text-decoration: underline; }
+.chip { display: inline-flex; align-items: center; border-radius: 5px; padding: 0 0 0 4px; border: 1px solid transparent; }
+.chip.lys { background: var(--ledig); border-color: var(--ledig-kant); color: var(--ledig-tekst); }
+.chip button { border: 0; background: transparent; padding: 0 5px; font-size: 14px; line-height: 1.2; color: var(--tekst3); }
+.chip button:hover { color: #c42b1c; background: transparent; }
+.knapper { display: flex; gap: 8px; margin-top: 6px; }
+.primaer { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; flex: 1; }
+.primaer:hover { background: var(--accent); filter: brightness(1.08); }
+.forklaring { margin-top: auto; font-size: 12px; color: var(--tekst3); display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
+.prik { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-left: 4px; }
+.prik.ledig { background: var(--ledig); border: 1px solid var(--ledig-kant); }
+.prik.valgt { background: var(--valgt); }
+.prik.optaget { background: var(--optaget); border-left: 3px solid var(--optaget-kant); }
+.prik.forel { background: var(--forel); border: 1px dashed var(--forel-kant); }
+
+/* Ugen */
+.uge { display: grid; column-gap: 6px; }
+.hoved { text-align: center; padding: 2px 0 8px; font-size: 12px; color: var(--tekst2); }
+.hoved b { display: block; font-size: 15px; font-weight: 600; color: var(--tekst); }
+.hoved.idag b { color: var(--idag); }
+.heldag { font-size: 11px; border-radius: 4px; padding: 1px 5px; margin: 0 0 4px; background: var(--optaget); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tid { position: relative; font-size: 11px; color: var(--tekst3); }
+.tid span { position: absolute; right: 4px; transform: translateY(-50%); }
+.dagkol { position: relative; background: var(--flade2); border-radius: 6px; overflow: hidden; }
+.dagkol.fortid { opacity: .55; }
+.linje { position: absolute; left: 0; right: 0; border-top: 1px solid var(--streg); }
+.nulinje { position: absolute; left: 0; right: 0; border-top: 2px solid #c42b1c; z-index: 4; }
+.b { position: absolute; border-radius: 4px; font-size: 11.5px; line-height: 1.25; padding: 2px 5px; overflow: hidden; }
+.b small { display: block; opacity: .8; font-size: 10.5px; }
+.b.optaget { background: var(--optaget); border-left: 3px solid var(--optaget-kant); }
+.b.forel { background: var(--forel); border: 1px dashed var(--forel-kant); }
+.b.ledig { left: 6px !important; right: 6px; width: auto !important; background: var(--ledig); border: 1px solid var(--ledig-kant); color: var(--ledig-tekst); font-weight: 600; cursor: pointer; z-index: 2; transition: background .1s, transform .1s; text-align: left; }
+.b.ledig:hover { filter: brightness(.96); }
+.b.ledig.valgt { background: var(--valgt); color: var(--valgt-tekst); border-color: var(--valgt); }
+.b.ledig.valgt::after { content: "✓"; position: absolute; right: 6px; top: 2px; }
+.b.ledig.lys { outline: 3px solid var(--accent); outline-offset: 1px; z-index: 3; }
+.uden-for { position: absolute; left: 0; right: 0; font-size: 10.5px; color: var(--tekst3); text-align: center; }
+
+@media (max-width: 760px) {
+  .ramme { grid-template-columns: 1fr; }
+  .liste { border-left: 0; border-top: 1px solid var(--streg); }
+}

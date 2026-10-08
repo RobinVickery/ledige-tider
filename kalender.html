@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ledige tider</title>
+  <link rel="stylesheet" href="kalender.css">
+  <!-- office.js fjerner history.pushState/replaceState, som login (MSAL) har brug for - gem dem og sæt dem tilbage -->
+  <script>window.__hist = { p: history.pushState, r: history.replaceState };</script>
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <script>if (!history.replaceState) { history.pushState = __hist.p; history.replaceState = __hist.r; }</script>
+  <script src="vendor/msal-browser.min.js"></script>
+  <script src="config.js"></script>
+</head>
+<body>
+  <header class="top">
+    <div class="nav">
+      <button id="forrige" class="pil" aria-label="Forrige uge" title="Forrige uge (←)">‹</button>
+      <button id="idag" class="lille">I dag</button>
+      <button id="naeste" class="pil" aria-label="Næste uge" title="Næste uge (→)">›</button>
+      <h1 id="ugetitel">…</h1>
+    </div>
+    <div class="valg">
+      <div class="skift" role="group" aria-label="Sådan vælges tiderne">
+        <button id="tilstand-til" class="on" title="Start tom - tryk på de grønne for at tage dem med">Vælg selv</button>
+        <button id="tilstand-fra" title="Alle ledige tider er med - fjern dem, du ikke vil sende">Alle med</button>
+      </div>
+      <label>Varighed
+        <select id="varighed">
+          <option value="30">30 min</option>
+          <option value="45">45 min</option>
+          <option value="60">1 time</option>
+          <option value="90">1½ time</option>
+          <option value="120">2 timer</option>
+        </select>
+      </label>
+      <label>Kl. <select id="fra"></select></label>
+      <label>– <select id="til"></select></label>
+    </div>
+  </header>
+
+  <div id="besked" class="besked" hidden></div>
+
+  <main class="ramme">
+    <section class="kal" id="kal" aria-label="Ugen"></section>
+    <aside class="liste">
+      <h2>Det, der sendes</h2>
+      <p class="tom" id="tom">Tryk på de grønne felter for at tage tiderne med.</p>
+      <ul id="valgte"></ul>
+      <div class="knapper">
+        <button id="indsaet" class="primaer">Indsæt i mail</button>
+        <button id="ryd" class="lille">Ryd</button>
+      </div>
+      <p class="forklaring">
+        <span class="prik ledig"></span> ledig
+        <span class="prik valgt"></span> med i listen
+        <span class="prik optaget"></span> optaget
+        <span class="prik forel"></span> foreløbig
+      </p>
+    </aside>
+  </main>
+
+  <script src="kalender.js"></script>
+</body>
+</html>
